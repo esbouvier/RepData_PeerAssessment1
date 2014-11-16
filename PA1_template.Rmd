@@ -104,8 +104,11 @@ missingValuesCount <- nrow(df[is.na(df$steps), ])
 1) The total number of missing values in the dataset is 
 **`r missingValuesCount`**.
 
-2) We are going to fill in all the missing data by using the mean of that 
-5-minute interval.
+2) The imputing strategy is as follows:
+
+1. Check if the number of steps for one interval is NA (not available). Zeros are considered to be a valid number of steps.
+    
+2. Replace the NA value for that interval with the mean number of steps taken for that interval across all the days.
 
 3) Create a new dataset that is equal to the original dataset but with the 
 missing data filled in.

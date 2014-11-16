@@ -293,8 +293,12 @@ interval containing the maximum number of steps.</p>
 <p>1) The total number of missing values in the dataset is 
 <strong>2304</strong>.</p>
 
-<p>2) We are going to fill in all the missing data by using the mean of that 
-5-minute interval.</p>
+<p>2) The imputing strategy is as follows:</p>
+
+<ol>
+<li><p>Check if the number of steps for one interval is NA (not available). Zeros are considered to be a valid number of steps.</p></li>
+<li><p>Replace the NA value for that interval with the mean number of steps taken for that interval across all the days.</p></li>
+</ol>
 
 <p>3) Create a new dataset that is equal to the original dataset but with the 
 missing data filled in.</p>
@@ -349,7 +353,7 @@ missing data with mean values had little impact on the median total number of st
 
 <!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
 
-<!-- Sun Nov 16 18:55:25 2014 -->
+<!-- Sun Nov 16 19:24:09 2014 -->
 
 <table border=1>
 <tr> <th>  </th> <th> Total Number of Steps Per Day </th> <th> With Missing Values </th> <th> With Imputated Values </th>  </tr>

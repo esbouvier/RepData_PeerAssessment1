@@ -107,8 +107,11 @@ missingValuesCount <- nrow(df[is.na(df$steps), ])
 1) The total number of missing values in the dataset is 
 **2304**.
 
-2) We are going to fill in all the missing data by using the mean of that 
-5-minute interval.
+2) The imputing strategy is as follows:
+
+1. Check if the number of steps for one interval is NA (not available). Zeros are considered to be a valid number of steps.
+    
+2. Replace the NA value for that interval with the mean number of steps taken for that interval across all the days.
 
 3) Create a new dataset that is equal to the original dataset but with the 
 missing data filled in.
@@ -168,7 +171,7 @@ missing data with mean values had little impact on the median total number of st
 Here is a summary of the results:
 
 <!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
-<!-- Sun Nov 16 18:55:25 2014 -->
+<!-- Sun Nov 16 19:24:09 2014 -->
 <table border=1>
 <tr> <th>  </th> <th> Total Number of Steps Per Day </th> <th> With Missing Values </th> <th> With Imputated Values </th>  </tr>
   <tr> <td align="right"> 1 </td> <td> Mean </td> <td> 10766.19 </td> <td> 10766.19 </td> </tr>
