@@ -16,7 +16,7 @@ opts_chunk$set(echo=TRUE, results="asis")
 
 ## Loading and preprocessing the data
 
-1. Unzip and read the CSV file.
+Unzip and read the CSV file.
 
 ```{r dataLoadingChunk1}
 unzip("activity.zip", overwrite=T)
@@ -25,16 +25,6 @@ df <- read.csv("activity.csv",
                colClasses=c("numeric", "character", "numeric"),
                na="NA")
 ```
-
-2. Add a new time dimension column by combining the date and the 5 mins interval
-
-```{r dataLoadingChunk2}
-df$datetime <- as.POSIXct(df$date, tz="GMT") + 
-               3600 * (df$interval %/% 100) +
-               60 * (df$interval %% 100)
-                
-```
-
 
 ## What is mean total number of steps taken per day?
 
@@ -59,7 +49,7 @@ meanTotalStepsPerDay <- mean(stepsPerDay$steps, na.rm=T)
 medianTotalStepsPerDay <- median(stepsPerDay$steps, na.rm=T)
 ```
 
-2 . The mean total number of steps taken per day is 
+2. The mean total number of steps taken per day is 
 **`r format(meanTotalStepsPerDay, scientific=FALSE)`**.
 
 The median total number of steps taken per day is 
@@ -200,14 +190,16 @@ df.imputed$dayType <- factor(
 
 2. Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
-Create a new aggregate for the mean of steps per interval.
+Create a new aggregate for the mean of steps per interval...
 
 ```{r}
 stepsPerInterval.imputed<- aggregate(steps ~ interval + dayType, data=df.imputed, mean)
 colnames(stepsPerInterval.imputed) <- c("interval", "dayType", "steps")
 ```
 
-```{r}
+... and finally, create the plot:
+
+```{r, fig.height=6}
 # Plot a time series for the mean steps per interval
 xyplot(steps ~ interval | dayType,
        data=stepsPerInterval.imputed,
