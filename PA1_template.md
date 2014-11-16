@@ -1,9 +1,5 @@
----
-title: 'Reproducible Research: Peer Assessment 1'
-output:
-  html_document:
-    keep_md: yes
----
+# Reproducible Research: Peer Assessment 1
+
 
 
 ## Loading and preprocessing the data
@@ -21,7 +17,7 @@ df <- read.csv("activity.csv",
 
 ## What is mean total number of steps taken per day?
 
-1. Create a new aggregate for the number of steps per day.
+1) Create a new aggregate for the number of steps per day.
 
 
 ```r
@@ -47,7 +43,7 @@ meanTotalStepsPerDay <- mean(stepsPerDay$steps, na.rm=T)
 medianTotalStepsPerDay <- median(stepsPerDay$steps, na.rm=T)
 ```
 
-2. The mean total number of steps taken per day is 
+2) The mean total number of steps taken per day is 
 **10766.19**.
 
 The median total number of steps taken per day is 
@@ -57,7 +53,7 @@ The median total number of steps taken per day is
 
 
 ## What is the average daily activity pattern?
-1. Create a new aggregate for the mean of steps per interval
+1) Create a new aggregate for the mean of steps per interval
 
 
 ```r
@@ -92,7 +88,7 @@ xyplot(steps ~ interval,
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
-2. Find the interval with the most steps...
+2) Find the interval with the most steps...
 
 
 ```r
@@ -108,13 +104,13 @@ interval containing the maximum number of steps.
 ```r
 missingValuesCount <- nrow(df[is.na(df$steps), ])
 ```
-1. The total number of missing values in the dataset is 
+1) The total number of missing values in the dataset is 
 **2304**.
 
-2. We are going to fill in all the missing data by using the mean of that 
+2) We are going to fill in all the missing data by using the mean of that 
 5-minute interval.
 
-3. Create a new dataset that is equal to the original dataset but with the 
+3) Create a new dataset that is equal to the original dataset but with the 
 missing data filled in.
 
 
@@ -129,7 +125,7 @@ df.imputed$steps <- ifelse(is.na(df.imputed$steps),
                                                 df.imputed$interval, "steps"], 
                            df.imputed$steps)
 ```
-4. Make a histogram of the total number of steps taken each day
+4) Make a histogram of the total number of steps taken each day
 
 
 ```r
@@ -172,7 +168,7 @@ missing data with mean values had little impact on the median total number of st
 Here is a summary of the results:
 
 <!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
-<!-- Sun Nov 16 17:58:22 2014 -->
+<!-- Sun Nov 16 18:55:25 2014 -->
 <table border=1>
 <tr> <th>  </th> <th> Total Number of Steps Per Day </th> <th> With Missing Values </th> <th> With Imputated Values </th>  </tr>
   <tr> <td align="right"> 1 </td> <td> Mean </td> <td> 10766.19 </td> <td> 10766.19 </td> </tr>
@@ -180,7 +176,7 @@ Here is a summary of the results:
    </table>
 
 ## Are there differences in activity patterns between weekdays and weekends?
-1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+1) Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
 
 ```r
@@ -191,7 +187,7 @@ df.imputed$dayType <- factor(
     labels=c("weekday", "weekend"))
 ```
 
-2. Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+2) Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
 Create a new aggregate for the mean of steps per interval...
 
